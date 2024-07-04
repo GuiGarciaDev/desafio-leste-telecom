@@ -11,6 +11,7 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
+  Row,
 } from "@tanstack/react-table"
 
 import {
@@ -32,6 +33,8 @@ import { Button } from "./ui/button"
 import { Input } from "@/components/ui/input"
 import { useState } from "react"
 import AddContactDialog from "./AddContactDialog"
+import { useContactStore } from "@/db/storage"
+import { Contact } from "@/types/contacts"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -47,6 +50,8 @@ export function DataTable<TData, TValue>({
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
   const [rowSelection, setRowSelection] = useState({})
   const [addContactDialog, setAddContactDialog] = useState(false)
+
+  const { removeContact } = useContactStore()
 
   const table = useReactTable({
     data,
@@ -67,6 +72,11 @@ export function DataTable<TData, TValue>({
     },
   })
 
+  function deleteSelected(selections: Row<TData>[]) {
+    //@ts-ignore
+    selections.map((selected) => removeContact(selected.original.id))
+  }
+
   return (
     <div>
       <AddContactDialog
@@ -85,7 +95,13 @@ export function DataTable<TData, TValue>({
           />
         </div>
         {table.getFilteredSelectedRowModel().rows.length > 0 && (
-          <Button variant="destructive" className="mr-3">
+          <Button
+            variant="destructive"
+            className="mr-3"
+            onClick={() =>
+              deleteSelected(table.getFilteredSelectedRowModel().rows)
+            }
+          >
             {`Remover ${table.getFilteredSelectedRowModel().rows.length}`}
           </Button>
         )}
