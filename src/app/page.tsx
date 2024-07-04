@@ -10,6 +10,8 @@ import HorizontalBarChart from "@/components/HorizontalBarChart"
 export default function Page() {
   const { contacts } = useContactStore()
 
+  console.log(process.env.NEXT_PUBLIC_LOCAL_API_URL)
+
   return (
     <>
       <div className="h-full flex-1 flex-col space-y-8 p-8 md:flex">
