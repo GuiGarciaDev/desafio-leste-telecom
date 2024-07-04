@@ -35,6 +35,7 @@ import { months } from "@/lib/months"
 import { getBirthdateFromAge } from "@/utils/birthday"
 import TableActionsMenuProps from "./TableActionsMenu"
 import SelectLanguage from "./SelectLanguage"
+import SelectGender from "./SelectGender"
 
 export const columns: ColumnDef<Contact>[] = [
   // {
@@ -101,26 +102,7 @@ export const columns: ColumnDef<Contact>[] = [
   },
   {
     accessorKey: "gender",
-    header: ({ column }) => {
-      return (
-        <Select
-          onValueChange={(value) =>
-            value === "N"
-              ? column.setFilterValue("")
-              : column.setFilterValue(value)
-          }
-        >
-          <SelectTrigger className="">
-            <SelectValue placeholder="Gênero" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="N">Limpar</SelectItem>
-            <SelectItem value="M">Masculino</SelectItem>
-            <SelectItem value="F">Feminino</SelectItem>
-          </SelectContent>
-        </Select>
-      )
-    },
+    header: ({ column }) => <SelectGender data={column} />,
   },
   {
     accessorKey: "language",

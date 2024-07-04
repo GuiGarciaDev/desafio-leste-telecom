@@ -10,22 +10,27 @@ import {
 } from "./ui/dialog"
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
-
-import { useForm } from "react-hook-form"
+import { Contact } from "@/types/contacts"
+import {
+  addcontactType,
+  addContactSchema,
+  editContactType,
+} from "@/types/schemas"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
 import { useContactStore } from "@/db/storage"
-import { addcontactType, addContactSchema } from "@/types/schemas"
-import { RadioGroup, RadioGroupItem } from "./ui/radio-group"
 
-interface EditFormDialogProps {
+interface DialogEditContactProps {
+  data: Contact
   isOpen: boolean
   setIsOpen: Dispatch<SetStateAction<boolean>>
 }
 
-export default function AddContactDialog({
+export default function DialogEditContact({
+  data,
   isOpen,
   setIsOpen,
-}: EditFormDialogProps) {
+}: DialogEditContactProps) {
   const {
     register,
     handleSubmit,
@@ -34,26 +39,35 @@ export default function AddContactDialog({
     resolver: zodResolver(addContactSchema),
   })
 
-  const { addContact } = useContactStore()
+  const { editContact } = useContactStore()
 
-  function onSubmit(data: addcontactType) {
-    addContact(data)
+  function onSubmit(contact: addcontactType) {
+    const newData: editContactType = {
+      id: data.id,
+      ...contact,
+    }
+
+    editContact(newData)
   }
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogContent className="sm:max-w-[427px] overflow-auto max-h-[60%]">
         <DialogHeader>
-          <DialogTitle>Acidionar contato</DialogTitle>
+          <DialogTitle>Editar contato</DialogTitle>
           <DialogDescription>
-            Insira os dados baixo para adicionar um novo contato à sua lista.
+            Edite as informações deste contato. Salve quando finalizar.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid gap-4 py-4">
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="first_name">Nome</Label>
-              <Input id="first_name" {...register("first_name")} />
+              <Input
+                id="first_name"
+                {...register("first_name")}
+                defaultValue={data.first_name}
+              />
               {errors.first_name && (
                 <span className="text-xs text-destructive">
                   {errors.first_name?.message}
@@ -63,7 +77,11 @@ export default function AddContactDialog({
 
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="last_name">Sobrenome</Label>
-              <Input id="last_name" {...register("last_name")} />
+              <Input
+                id="last_name"
+                {...register("last_name")}
+                defaultValue={data.last_name}
+              />
               {errors.last_name && (
                 <span className="text-xs text-destructive">
                   {errors.last_name?.message}
@@ -73,7 +91,11 @@ export default function AddContactDialog({
 
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="email">Email</Label>
-              <Input id="email" {...register("email")} />
+              <Input
+                id="email"
+                {...register("email")}
+                defaultValue={data.email}
+              />
               {errors.email && (
                 <span className="text-xs text-destructive">
                   {errors.email?.message}
@@ -84,6 +106,7 @@ export default function AddContactDialog({
               <Label htmlFor="gender">Gênero</Label>
               <div className="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
                 <input
+                  checked={data.gender === "M"}
                   id="male"
                   type="radio"
                   value="M"
@@ -99,6 +122,7 @@ export default function AddContactDialog({
               </div>
               <div className="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
                 <input
+                  checked={data.gender === "F"}
                   id="female"
                   type="radio"
                   value="F"
@@ -121,7 +145,11 @@ export default function AddContactDialog({
 
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="language">Idioma</Label>
-              <Input id="language" {...register("language")} />
+              <Input
+                id="language"
+                {...register("language")}
+                defaultValue={data.language}
+              />
               {errors.language && (
                 <span className="text-xs text-destructive">
                   {errors.language?.message}
@@ -131,7 +159,11 @@ export default function AddContactDialog({
 
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="birthday">Data de nascimento</Label>
-              <Input id="birthday" {...register("birthday")} />
+              <Input
+                id="birthday"
+                {...register("birthday")}
+                defaultValue={data.birthday}
+              />
               {errors.birthday && (
                 <span className="text-xs text-destructive">
                   {errors.birthday?.message}
@@ -140,7 +172,7 @@ export default function AddContactDialog({
             </div>
           </div>
           <DialogFooter>
-            <Button type="submit">Adicionar</Button>
+            <Button type="submit">Salvar</Button>
           </DialogFooter>
         </form>
       </DialogContent>

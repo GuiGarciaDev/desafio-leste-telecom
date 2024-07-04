@@ -32,7 +32,7 @@ import {
 import { Button } from "./ui/button"
 import { Input } from "@/components/ui/input"
 import { useState } from "react"
-import AddContactDialog from "./AddContactDialog"
+import DialogAddContact from "./DialogAddContact"
 import { useContactStore } from "@/db/storage"
 import { Contact } from "@/types/contacts"
 
@@ -79,7 +79,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-      <AddContactDialog
+      <DialogAddContact
         isOpen={addContactDialog}
         setIsOpen={setAddContactDialog}
       />

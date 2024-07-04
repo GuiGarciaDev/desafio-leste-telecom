@@ -6,13 +6,14 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import EditFormDialog from "./EditContactDialog"
+import DialogEditContact from "./DialogEditContact"
 
 import { useContactStore } from "@/db/storage"
 import { useState } from "react"
 import { Contact } from "@/types/contacts"
 import { Button } from "./ui/button"
 import { MoreHorizontal } from "lucide-react"
+import DialogProfile from "./DialogProfile"
 
 interface TableActionsMenuProps {
   contact: Contact
@@ -23,12 +24,19 @@ export default function TableActionsMenuProps({
 }: TableActionsMenuProps) {
   const { removeContact } = useContactStore()
   const [editForm, setEditForm] = useState(false)
+  const [showProfile, setShowProfile] = useState(false)
 
   return (
     <>
-      <EditFormDialog
+      <DialogEditContact
         isOpen={editForm}
         setIsOpen={setEditForm}
+        data={contact}
+      />
+
+      <DialogProfile
+        isOpen={showProfile}
+        setIsOpen={setShowProfile}
         data={contact}
       />
 
@@ -52,7 +60,9 @@ export default function TableActionsMenuProps({
           </DropdownMenuItem>
           <DropdownMenuSeparator />
 
-          <DropdownMenuItem>Ver perfil</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setShowProfile(true)}>
+            Ver perfil
+          </DropdownMenuItem>
 
           <DropdownMenuItem onClick={() => setEditForm(true)}>
             Editar
