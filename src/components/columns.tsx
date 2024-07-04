@@ -188,7 +188,6 @@ export const columns: ColumnDef<Contact>[] = [
                       } else {
                         const age = +e.target.value
                         const bornYear = getBirthdateFromAge(age).slice(0, 5)
-                        console.log(bornYear)
 
                         column.setFilterValue(bornYear)
                       }

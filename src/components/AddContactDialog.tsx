@@ -37,8 +37,6 @@ export default function AddContactDialog({
   const { addContact } = useContactStore()
 
   function onSubmit(data: addcontactType) {
-    console.log(data)
-
     addContact(data)
   }
 
