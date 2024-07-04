@@ -29,7 +29,7 @@ export default function Page() {
           <span className="text-xl">Dados Estatísticos</span>
           <span className="mb-7">{`Total de contatos: ${contacts.length}`}</span>
 
-          <div className="flex flex-col items-center gap-7 md:flex-row justify-center">
+          {/* <div className="flex flex-col items-center gap-7 md:flex-row justify-center">
             <HorizontalBarChart
               name="Número de pessoas por idioma"
               labels={getUniquePropertyValues(contacts, "language").map(
@@ -54,7 +54,7 @@ export default function Page() {
               ]}
               backgroundColor={["blue", "violet"]}
             />
-          </div>
+          </div> */}
         </div>
       </div>
     </>
