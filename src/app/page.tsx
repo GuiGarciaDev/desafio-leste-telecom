@@ -23,15 +23,13 @@ export default function Page() {
             </p>
           </div>
         </div>
-        <DataTable columns={columns} data={contacts} />
+        {/* <DataTable columns={columns} data={contacts} /> */}
 
         <div className="flex flex-col gap-6">
           <span className="text-xl">Dados Estatísticos</span>
           <span className="mb-7">{`Total de contatos: ${contacts.length}`}</span>
 
-          <div>Chart js inconpatible to next vercel</div>
-
-          {/* <div className="flex flex-col items-center gap-7 md:flex-row justify-center">
+          <div className="flex flex-col items-center gap-7 md:flex-row justify-center">
             <HorizontalBarChart
               name="Número de pessoas por idioma"
               labels={getUniquePropertyValues(contacts, "language").map(
@@ -56,7 +54,7 @@ export default function Page() {
               ]}
               backgroundColor={["blue", "violet"]}
             />
-          </div> */}
+          </div>
         </div>
       </div>
     </>
