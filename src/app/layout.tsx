@@ -18,12 +18,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const API_PATH =
-    "https://my.api.mockaroo.com/lestetelecom/test.json?key=f55c4060"
-
-  // const data = await fetch("http://localhost:3000/api")
-  //   .then((res) => res.json())
-  //   .then((data: Contacts) => data)
   const data = await getContactsFromAPIData()
 
   return (

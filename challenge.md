@@ -1,7 +1,7 @@
 TODO:
 
 [x] Add chart graphics to show statistic data about gender and language
-[x] Create a specif field for gender in the form
+[x] Create a specific field for gender in the form
 
 [] Create a new way to alow user pick an avatar
 [] Create a profile section to show all contact data
