@@ -24,10 +24,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Suspense fallback={<div>Loading...</div>}>
-          {/* <StoreInitializer data={data}>{children}</StoreInitializer> */}
-          <StoreInitializer data={data}>
-            <div>Hmmm...</div>
-          </StoreInitializer>
+          <StoreInitializer data={data}>{children}</StoreInitializer>
         </Suspense>
       </body>
     </html>

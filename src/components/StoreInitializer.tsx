@@ -30,6 +30,3 @@ export default function StoreInitializer({
     return children
   }
 }
-
-// Try a way to get the api data here
-// With this we can avoid the unecessary requests to the external API
