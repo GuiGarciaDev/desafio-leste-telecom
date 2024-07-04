@@ -7,7 +7,7 @@ const API_ENDPOINT =
 import { Contacts } from "@/types/contacts"
 
 export async function getContactsFromAPIData(): Promise<Contacts> {
-  const data = await fetch(API_ENDPOINT)
+  const data = await fetch(LOCAL_ENDPOINT)
     .then((res) => res.json())
     .then((data: Contacts) => data)
 
