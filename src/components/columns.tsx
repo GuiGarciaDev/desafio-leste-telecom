@@ -2,22 +2,12 @@
 
 import { Contact } from "@/types/contacts"
 import { ColumnDef } from "@tanstack/react-table"
-import { ArrowUpDown, MoreHorizontal, SlidersHorizontal } from "lucide-react"
+import { ArrowUpDown } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 
 import { Checkbox } from "@/components/ui/checkbox"
 import { useContactStore } from "@/db/storage"
-import { useState } from "react"
-import EditFormDialog from "./EditContactDialog"
 import { Select } from "@radix-ui/react-select"
 import {
   SelectContent,
@@ -43,6 +33,8 @@ import {
 } from "./ui/command"
 import { months } from "@/lib/months"
 import { getBirthdateFromAge } from "@/utils/birthday"
+import TableActionsMenuProps from "./TableActionsMenu"
+import SelectLanguage from "./SelectLanguage"
 
 export const columns: ColumnDef<Contact>[] = [
   // {
@@ -132,32 +124,7 @@ export const columns: ColumnDef<Contact>[] = [
   },
   {
     accessorKey: "language",
-    header: ({ column }) => {
-      const { contacts } = useContactStore()
-      return (
-        <Select
-          onValueChange={(value) =>
-            value === "N"
-              ? column.setFilterValue("")
-              : column.setFilterValue(value)
-          }
-        >
-          <SelectTrigger className="">
-            <SelectValue placeholder="Idioma" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="N">Todos</SelectItem>
-            {contacts.map((contact) => {
-              return (
-                <SelectItem value={contact.language} key={contact.id}>
-                  {contact.language}
-                </SelectItem>
-              )
-            })}
-          </SelectContent>
-        </Select>
-      )
-    },
+    header: ({ column }) => <SelectLanguage column={column} />,
   },
   {
     accessorKey: "birthday",
@@ -230,55 +197,6 @@ export const columns: ColumnDef<Contact>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => {
-      const contact = row.original
-
-      const { removeContact } = useContactStore()
-      const [editForm, setEditForm] = useState(false)
-
-      return (
-        <>
-          <EditFormDialog
-            isOpen={editForm}
-            setIsOpen={setEditForm}
-            data={contact}
-          />
-
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-8 w-8 p-0">
-                <span className="sr-only">Open menu</span>
-                <MoreHorizontal className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>Opções</DropdownMenuLabel>
-              <DropdownMenuItem
-                onClick={() =>
-                  navigator.clipboard.writeText(
-                    `${contact.first_name} ${contact.last_name}`
-                  )
-                }
-              >
-                Copiar nome
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-
-              <DropdownMenuItem>Ver perfil</DropdownMenuItem>
-
-              <DropdownMenuItem onClick={() => setEditForm(true)}>
-                Editar
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                onClick={() => removeContact(contact.id)}
-                className="text-destructive"
-              >
-                Remover
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </>
-      )
-    },
+    cell: ({ row }) => <TableActionsMenuProps contact={row.original} />,
   },
 ]

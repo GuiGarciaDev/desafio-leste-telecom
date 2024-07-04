@@ -3,7 +3,7 @@
 import { useContactStore } from "@/db/storage"
 
 export default function Table() {
-  const { contacts, deleteContact } = useContactStore()
+  const { contacts, removeContact } = useContactStore()
 
   return (
     <div className="flex w-full h-full justify-center p-10">
@@ -13,7 +13,7 @@ export default function Table() {
             <li
               key={contact.id}
               className="flex flex-col"
-              onClick={() => deleteContact(contact.id)}
+              onClick={() => removeContact(contact.id)}
             >
               <span>{contact.id}</span>
               <span>{`${contact.first_name} ${contact.last_name}`}</span>
