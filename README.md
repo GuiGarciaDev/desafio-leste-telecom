@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">
+  <img alt="Leste Telecom" title="Leste Telecom" src="./logo.png" width="200px" />
+</h1>
 
-## Getting Started
+<h3 align="center">
+  Desafio do Desenvolvimento
+</h3>
 
-First, run the development server:
+<p align="center">
+  <a href="#computer-o-desafio">Descrição</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-entrega">Entrega</a>
+</p>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## :computer: O desafio
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+A aplicação que deverá ser desenvolvida é uma listagem de contatos, o **Leste Contact**.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Neste desafio deverá ser criado uma aplicação com todas as funcionalidades solicitadas e será utilizada para **avaliação dos cadadidatos** para a vaga de desenvolvimento da Leste Telecom.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Um pouco sobre as ferramentas
 
-## Learn More
+Você deverá criar a aplicação do zero utilizando o [ReactJS](https://expressjs.com/).
 
-To learn more about Next.js, take a look at the following resources:
+Poderá ser utilizado qualquer outra biblioteca complementar ao React para o desenvolvimento desta aplicação.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Funcionalidades
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Abaixo segue a listagem de funcionalidades que a aplicação deve apresentar.
 
-## Deploy on Vercel
+#### 1. Chamada a API
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+A aplicação deve fazer uma chamada para uma [API Externa](https://my.api.mockaroo.com/lestetelecom/test.json?key=f55c4060) que devolverá uma série de informações de contatos.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+#### 2. Listagem de Contatos
+
+Liste todas as informações recebidas da API em formato de lista de contatos.
+
+O design da aplicação fica a seu critério
+
+#### 3. Adicionar novo Contato
+
+Crie a funcionalidade do usuário ser capaz de adicionar um novo Contato a listagem.
+
+Persista as informações no próprio browser.
+
+#### 4. Remover Contatos
+
+Disponibilize para o usuário excluir um contato da lista.
+
+#### 5. Editar Contatos
+
+Disponibilize para o usuário editar qualquer campo de um contato da lista.
+
+#### 6. Filtros
+
+Adicione filtros na listagem para as seguintes informações:
+
+- Gender
+- Language
+- Age
+- Birthday (todos de um determinado mês)
+
+#### 7. Resumo
+
+Adicione um resumo estatístico da sua lista, exibindo a contagem total dos campos:
+
+- Gender
+- Language
+
+## 📅 Entrega
+
+Para realizar a entrega do desafio basta seguir os passos:
+
+- Dê um **Fork** neste repositório para o Github
+- Realize o desafio e suba para a sua cópia do repositório
+- Hospede a aplicação em um host de sua escolha. Há diversas opções grátis por aí!
+- Ao finalizar todas as funcionalidades realize um **Pull Request** com as seguintes informações: **Nome**, **Email** e **URL da aplicação**
+
+Depois de enviar a sua versão iremos avaliar e retornaremos assim que possível!
+
+---
+
+Feito com ♥ by Leste Telecom :wave:
