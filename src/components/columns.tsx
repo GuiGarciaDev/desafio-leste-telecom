@@ -7,14 +7,6 @@ import { ArrowUpDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 import { Checkbox } from "@/components/ui/checkbox"
-import { useContactStore } from "@/db/storage"
-import { Select } from "@radix-ui/react-select"
-import {
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "./ui/select"
 
 import {
   Popover,

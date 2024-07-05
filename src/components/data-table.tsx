@@ -34,7 +34,8 @@ import { Input } from "@/components/ui/input"
 import { useState } from "react"
 import DialogAddContact from "./DialogAddContact"
 import { useContactStore } from "@/db/storage"
-import { Contact } from "@/types/contacts"
+import { useMediaQuery } from "@/hooks/useMediaQuery"
+import { Plus } from "lucide-react"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -77,13 +78,15 @@ export function DataTable<TData, TValue>({
     selections.map((selected) => removeContact(selected.original.id))
   }
 
+  const isTablet = useMediaQuery("(min-width: 640px)")
+
   return (
     <div>
       <DialogAddContact
         isOpen={addContactDialog}
         setIsOpen={setAddContactDialog}
       />
-      <div className="flex items-center">
+      <div className="flex items-center gap-3">
         <div className="flex items-center py-4 w-full">
           <Input
             placeholder="Filtrar emails..."
@@ -106,12 +109,8 @@ export function DataTable<TData, TValue>({
           </Button>
         )}
 
-        <Button
-          variant="default"
-          className="mr-3"
-          onClick={() => setAddContactDialog(true)}
-        >
-          Adicionar contato
+        <Button variant="default" onClick={() => setAddContactDialog(true)}>
+          {isTablet ? "Adicionar contato" : <Plus />}
         </Button>
 
         <DropdownMenu>

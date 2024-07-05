@@ -10,14 +10,14 @@ import { Contact } from "@/types/contacts"
 import { Column } from "@tanstack/react-table"
 
 interface SelectGenderProps {
-  data: Column<Contact, unknown>
+  data: Column<Contact, unknown> | undefined
 }
 
 export default function SelectGender({ data }: SelectGenderProps) {
   return (
     <Select
       onValueChange={(value) =>
-        value === "N" ? data.setFilterValue("") : data.setFilterValue(value)
+        value === "N" ? data?.setFilterValue("") : data?.setFilterValue(value)
       }
     >
       <SelectTrigger className="">
